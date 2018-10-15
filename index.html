@@ -20,6 +20,7 @@
             opacity: 0; transition: all 1s;
             left: 50%;
             transform: translateX(-50%);
+            animation-play-state: paused;
         }
         @keyframes drop{
             from{
@@ -96,19 +97,19 @@
             var c = document.createElement('div')
             c.innerHTML=k[i];
             c.className="flo";
-            c.style.top= i * 25 + 'px'
-            c.style.animationDelay= i * 2+'s'
-            document.querySelector('#content').appendChild(c)
-            var flos = document.querySelectorAll('.flo')
+            c.style.top= i * 25 + 'px';
+            c.style.animationDelay= i * 2+'s';
+            document.querySelector('#content').appendChild(c);
+            var flos = document.querySelectorAll('.flo');
         }
         
         var title = '부드러운 그_냥'
         for(var i = 0; i < title.length; i++){
-            var t = document.querySelector('#title')
-            var s = document.createElement('span')
-            s.innerHTML = title[i]
-            s.style.animationDelay= i * 0.2+'s'
-            t.appendChild(s)
+            var t = document.querySelector('#title');
+            var s = document.createElement('span');
+            s.innerHTML = title[i];
+            s.style.animationDelay= i * 0.2+'s';
+            t.appendChild(s);
         }
 
         var toggle = "off";
@@ -117,23 +118,37 @@
 				if (toggle == "off") {
 					soft.play();
 					toggle="on";
-                    play.setAttribute("src","play.png");
+                    play.setAttribute("src","stop.png");
+
+                    var q = document.getElementsByClassName("flo");
+                    console.log(q);
+                    for(var i=0; i < q.length; i++){
+                        q[i].style.animationPlayState = "running";
+                    }
+
                 }else{
 					soft.pause();
 					toggle="off";
-                    play.setAttribute("src","stop.png");
+                    play.setAttribute("src","play.png");
+
+                     var q = document.getElementsByClassName("flo");
+                    console.log(q);
+                    for(var i=0; i < q.length; i++){
+                        q[i].style.animationPlayState = "paused";
+                    }
+
                 }
         
 		}
-        var toggle = "off";
+        var lovetoggle = "off";
             love.onclick=function(){
-                if (toggle == "off") {
+                if (lovetoggle == "off") {
                     
-                    toggle="on";
+                    lovetoggle="on";
                     love.setAttribute("src","ve.jpg");
                 }else{
                     
-                    toggle="off";
+                    lovetoggle="off";
                     love.setAttribute("src","lo.jpg");
                 }
             }
